@@ -1,0 +1,22 @@
+{% block body %}
+	<h2>Welcome to Hampton Coaching Buddy<h2>
+	<p>What are you trying to do?<p>
+	<table> <tr> <td>
+	<form action="{{ url_for('rowerhome') }}" method=get>
+		<dd><input type=submit value="View Rower Stats">
+	</form>
+	</td> <td>
+	<form action="{{ url_for('metersHome') }}" method=get>
+		<dd><input type=Submit value="Manage Meters">
+	</form>
+	</td><td>
+	<form action="{{ url_for('progressHome') }}" method=get>
+		<dd><input type=Submit value="Track Rower Progress">
+	</form>
+	</td><td>
+	<form action="{{ url_for('logout') }}" method=post>
+		<dd><input type=Submit value="Logout">
+	</form>
+	</td> </tr>
+	</table>
+{% endblock%}

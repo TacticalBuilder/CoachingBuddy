@@ -1,0 +1,45 @@
+{% block body %}
+<table> <tr> 
+<td> 
+	<h3> Additive </h3> 
+</td> <td>
+	<form action="{{ url_for('meter_add') }}" method=get>
+		<dd><input type=submit value="Add a Workout">
+	</form>
+</td> <td> 
+	<form action="{{ url_for('culmatives') }}" method=get>
+		<dd><input type=submit value="See Season Totals">
+	</form>
+</td> </tr> <tr> <td>
+	<h3> Subtractive </h3>
+</td> <td>
+	<form action="{{ url_for('meter_remove'}}" method=get>
+		<dt>Remove by Database Location</dt>
+		<dd><input type=text placeholder='Object_id' name='obj_field'></dd>
+		<dd><input type=submit value="Remove"></dd>
+	</form>
+</td> <td>
+	<form action="{{ url_for('meter_remove'}}" method=post>
+		<dt> Find by attribute </dt>
+		<table> <tr> <td> 
+		<dd><select name='row_name'> 
+			<option selected disabled>By Rower</option>
+			<option value=BKL>Brendan Luksik</option>
+			<option value=KRM>Katie Murray</option>
+			<option value=PPP>Zach Patronic</option>
+			</select>
+		</td> <td>
+			<dt>By Date </dt>
+			<dd><input type=date name='piece_date'>
+		</td> </tr> <tr> <td>
+			<dt>By Time</dt>
+			<dd><input type=text placeholder='HH:MM:SS.s' name='piece_time'>
+		</td> <td>
+			<dt>By Distance </dt>
+			<dd><input type=text placeholder='meters' name='piece_dist'>
+		</td> <td>
+			<dd><input type=submit value='Find'>
+		</td> </tr> </table>
+	</form>
+</td> </tr> </table>
+{% endblock %}
