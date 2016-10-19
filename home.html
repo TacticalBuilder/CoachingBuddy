@@ -1,22 +1,230 @@
-{% block body %}
-	<h2>Welcome to Hampton Coaching Buddy<h2>
-	<p>What are you trying to do?<p>
-	<table> <tr> <td>
-	<form action="{{ url_for('rowerhome') }}" method=get>
-		<dd><input type=submit value="View Rower Stats">
-	</form>
-	</td> <td>
-	<form action="{{ url_for('metersHome') }}" method=get>
-		<dd><input type=Submit value="Manage Meters">
-	</form>
-	</td><td>
-	<form action="{{ url_for('progressHome') }}" method=get>
-		<dd><input type=Submit value="Track Rower Progress">
-	</form>
-	</td><td>
-	<form action="{{ url_for('logout') }}" method=post>
-		<dd><input type=Submit value="Logout">
-	</form>
-	</td> </tr>
-	</table>
-{% endblock%}
+<!---Initial screen startup types--->
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Coaching Buddy</title>  <!---tab title-->
+		<link rel="icon" href="rowingpic.jpg"/>  <!---tab icon--->
+		<style type="text/css"> 
+			body {
+				background-color: grey;
+			}
+			div {
+				border: 1px solid black;
+			}
+			#content_contain {
+				height: 90%;
+				width: 90%;
+				/* SET MIN WIDTH AND HEIGHT REQUIREMENTS*/
+				margin: 0 auto;
+				border: 4px solid black;
+				border-radius: 6px;
+			}
+			#banner {
+				background-color: #0066ff;
+				border: 1px solid black;
+				text-align: center;
+			}
+			#nav_pane {
+				border: 1px solid  black;
+				text-align: center;
+			}
+			.nav_button {
+				background-color: #0066ff;
+				border: 4px solid black;
+				color: white;   /*text color*/
+				padding: 16px 46px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 1em;
+				font-family: Crete Round, serif;
+				transition-duration: 0.3s;
+			}
+			.nav_button:hover {
+				background-color: #ffff00; 
+				color: black;
+			}
+			.task_button {
+				background-color: orange;
+				border: 2px solid black;
+				text-align: center;
+				transition-duration: 0.3s;
+			}
+			.task_button:hover {
+				background-color: green;
+			}
+			#alert_pane {
+				background-color: rgba(255, 0, 29, 0.6);
+				width: 100%
+			}
+			#track_pane {
+				background-color: rgba(0, 255, 106, 0.4);
+				width: 100%
+			}
+		</style>
+	</head>
+	<body>
+		<div id=content_contain>
+			<div id=banner>
+				<p>HAMPTON</p>
+			</div>
+			<div id=nav_pane>
+				<table style="margin:auto;"> <tr> <td>
+					<form>
+						<input type=submit class=nav_button value="Manage Roster"/>
+					</form>
+				</td> <td>
+					<form>
+						<input type=submit class=nav_button value="Track Team Progress"/>
+					</form>
+				</td> <td>
+					<form>
+						<input type=submit class=nav_button value="Check Competitions and Workouts"/>
+					</form>
+				</td> </tr> </table>
+			</div>
+			<div style="text-align:center;">
+				<table style="margin:auto"> <tr> <td>
+					<div>
+						<!---TO DO: Move this back and reformat it to have a configureable display-->
+						<script language="javascript" type="text/javascript">
+						var day_of_week = new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
+						var month_of_year = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+
+						//  DECLARE AND INITIALIZE VARIABLES
+						var Calendar = new Date();
+
+						var year = Calendar.getFullYear();     // Returns year
+						var month = Calendar.getMonth();    // Returns month (0-11)
+						var today = Calendar.getDate();    // Returns day (1-31)
+						var weekday = Calendar.getDay();    // Returns day (1-31)
+
+						var DAYS_OF_WEEK = 7;    // "constant" for number of days in a week
+						var DAYS_OF_MONTH = 31;    // "constant" for number of days in a month
+						var cal;    // Used for printing
+
+						Calendar.setDate(1);    // Start the calendar day at '1'
+						Calendar.setMonth(month);    // Start the calendar month at now
+
+
+						/* VARIABLES FOR FORMATTING
+						NOTE: You can format the 'BORDER', 'BGCOLOR', 'CELLPADDING', 'BORDERCOLOR'
+							  tags to customize your caledanr's look. */
+
+						var TR_start = '<TR>';
+						var TR_end = '</TR>';
+						var highlight_start = '<TD WIDTH="30"><TABLE CELLSPACING=0 BORDER=1 BGCOLOR=DEDEFF BORDERCOLOR=CCCCCC><TR><TD WIDTH=20><B><CENTER>';
+						var highlight_end   = '</CENTER></TD></TR></TABLE></B>';
+						var TD_start = '<TD WIDTH="30"><CENTER>';
+						var TD_end = '</CENTER></TD>';
+
+						/* BEGIN CODE FOR CALENDAR
+						NOTE: You can format the 'BORDER', 'BGCOLOR', 'CELLPADDING', 'BORDERCOLOR'
+						tags to customize your calendar's look.*/
+
+						cal =  '<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 BORDERCOLOR=BBBBBB><TR><TD>';
+						cal += '<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=2>' + TR_start;
+						cal += '<TD COLSPAN="' + DAYS_OF_WEEK + '" BGCOLOR="#EFEFEF"><CENTER><B>';
+						cal += month_of_year[month]  + '   ' + year + '</B>' + TD_end + TR_end;
+						cal += TR_start;
+
+						//   DO NOT EDIT BELOW THIS POINT  //
+
+						// LOOPS FOR EACH DAY OF WEEK
+						for(index=0; index < DAYS_OF_WEEK; index++)
+						{
+
+						// BOLD TODAY'S DAY OF WEEK
+						if(weekday == index)
+						cal += TD_start + '<B>' + day_of_week[index] + '</B>' + TD_end;
+
+						// PRINTS DAY
+						else
+						cal += TD_start + day_of_week[index] + TD_end;
+						}
+
+						cal += TD_end + TR_end;
+						cal += TR_start;
+
+						// FILL IN BLANK GAPS UNTIL TODAY'S DAY
+						for(index=0; index < Calendar.getDay(); index++)
+						cal += TD_start + '  ' + TD_end;
+
+						// LOOPS FOR EACH DAY IN CALENDAR
+						for(index=0; index < DAYS_OF_MONTH; index++)
+						{
+						if( Calendar.getDate() > index )
+						{
+						  // RETURNS THE NEXT DAY TO PRINT
+						  week_day =Calendar.getDay();
+
+						  // START NEW ROW FOR FIRST DAY OF WEEK
+						  if(week_day == 0)
+						  cal += TR_start;
+
+						  if(week_day != DAYS_OF_WEEK)
+						  {
+
+						  // SET VARIABLE INSIDE LOOP FOR INCREMENTING PURPOSES
+						  var day  = Calendar.getDate();
+
+						  // HIGHLIGHT TODAY'S DATE
+						  if( today==Calendar.getDate() )
+						  cal += highlight_start + day + highlight_end + TD_end;
+
+						  // PRINTS DAY
+						  else
+						  cal += TD_start + day + TD_end;
+						  }
+
+						  // END ROW FOR LAST DAY OF WEEK
+						  if(week_day == DAYS_OF_WEEK)
+						  cal += TR_end;
+						  }
+
+						  // INCREMENTS UNTIL END OF THE MONTH
+						  Calendar.setDate(Calendar.getDate()+1);
+
+						}// end for loop
+
+						cal += '</TD></TR></TABLE></TABLE>';
+
+						//  PRINT CALENDAR
+						document.write(cal);
+
+						//  End -->
+						</script>
+						<br/>
+					</div>
+				</td> <td>
+					<h4>Control Panel</h3>
+					<div id=alert_pane>
+						<h5>Alerts</h5>
+						<table id=alerts_table>
+						<!--- script must populate this table with the data TO DO: data input into pages
+							<td>DATE</td> <td>INFORMATION STRING</td> <td>LINK TO FIX IT</td> -->
+						<table>
+					</div>
+					<div id=track_pane>
+						<h5>Items of Interest</h5>
+						<table id=track_table>
+						<!--- script must populate this table with the data TO DO: data input into pages
+							<td>PARTY OF INTEREST</td> <td>INFORMATION STRING</td> <td>STATUS</td> <td>MARK AS RESOLVED </td>-->
+						</table>
+						<!---<form>
+							<input class=task_button value="Monitor new item" />
+						</form>-->
+					</div>
+				</td> </tr> </table>
+			</div>
+			<form>
+				<input type=submit class=task_button value="Settings"/>
+			</form>
+		</div>
+		<script>
+			//Clean up script
+			console.log("rendered");
+		</script>
+	</body>
+</html>
