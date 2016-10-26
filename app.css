@@ -1,0 +1,23 @@
+ li {
+	list-style-type: none;
+ }
+ .nav_button {
+	width: 100%;
+	background-color: #add8e6;
+	border: 4px solid black;
+	color: black;   /*text color*/
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1em;
+	font-family: Crete Round, serif;
+	transition-duration: 0.3s;
+}
+.nav_button:hover {
+	background-color: #07b8f2; 
+	color: black;
+}
+.content_contain {
+	border: 3px solid black;
+	border-radius: 3px;
+}
