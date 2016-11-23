@@ -1,0 +1,176 @@
+/*Calendar Related classes*/
+.calendar {
+	float: center;
+	margin-left: auto;
+	margin-right: auto;
+	width:90%;
+}
+.calendar tr {
+	margin: 0;
+}
+.calendar tr th {
+	border: 1px solid black;
+	color: white;
+	background-color: #3399ff;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 1%;
+	padding-right: 1%;
+	border-right: none;
+	border-left: none;
+}
+.calendar tr th p {
+	font-family: verdana, sans-serif;
+	font-size: 12px;
+	margin: 0;
+}
+.calendar tr td {
+	border: 1px solid black;
+	text-align: left;  /*the buttons will override this and center*/
+	vertical-align: top;
+	background-color: #f7f3ec;
+	width: 13%;
+	padding-top: 0;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+.calendar tr td div {  /*CSS may be able to do this vertical centering all by itself*/
+	text-align: center;
+	height: 50px;
+	margin: 0 auto;
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	overflow: auto;
+}
+.end-block ul {
+	font-family: sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding-top: 33%;
+	list-style-type: none;
+	text-align: right;
+}
+.end-block ul li {
+	
+}
+.end-block {
+	width: 9%;
+}
+.end-block:hover {
+	transition-duration: 0.3s;
+	background-color: #f73fce;
+}
+.date {
+	text-align: right;
+	vertical-align: top;
+	font-family: verdana, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0 0;
+}
+
+
+/*ALL MONTH HEADER RELATIONS*/
+.month {
+	border: 2px black solid;
+	padding: 1px 5px;
+    width: 90%;
+    background: #3399ff;
+	text-align: center;
+}
+.month ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.month ul li {
+	width: 32%;
+	float: center;
+	display: inline-block;
+}
+#end-bar {
+	color: #3399ff;
+}
+
+
+/*universal css classes*/
+	/*titles and cross page text formatters*/
+.title-phrase {
+	font-family: Verdana, sans-serif;
+	color: white;
+    font-size: 20px;
+	text-align: center;
+}
+	/*cross page navigation features*/
+.pointer-left {
+	float: left;
+	vertical-align:center;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+.pointer-right {
+	float: right;
+	vertical-align: center;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+/* workout buttons and their sub styles*/
+.workout-button {
+	float: center;
+	border: 2px solid #006060;
+	color: white;
+	font-size: 10px;
+	font-family: sans-serif;
+	text-align: center;
+	width: 99%;
+	height: 20px;
+	border-radius: 2px;
+	transition-duration: 0.1s;
+}
+.u2 {
+	background-color: #00E800;
+	color: black;
+}
+.u1 {
+	background-color: #009900;
+}
+.at {
+	background-color: #008080;
+}
+.tr {
+	background-color: #0000DA;
+}
+.an {
+	background-color: #00008B;
+}
+.test {
+	background-color: #9d20cb;
+}
+.comp {
+	background-color: #FFA500;
+}
+.u2:hover {
+	background-color: #00FF00;
+}
+.u1:hover {
+	background-color: #00AD00;
+}
+.at:hover {
+	background-color: #009595;
+}
+.tr:hover {
+	background-color: #0015FF;
+}
+.an:hover {
+	background-color: #0000CC;
+}
+.test:hover {
+	background-color:#BA55D3;
+}
+.comp:hover {
+	background-color: #ffc996
+}
